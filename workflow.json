@@ -1,0 +1,562 @@
+{
+  "name": "Email Marketing Campaign",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1"
+            }
+          ]
+        }
+      },
+      "id": "5e1d5e28-9afd-468e-9dee-647199666f66",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        272,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.output;\n\nlet emailData;\n\ntry {\n  emailData = JSON.parse(raw);\n} catch (e) {\n  emailData = {\n    subject: \"🚀 Turn Your Ads Into Viral Videos\",\n    body_html: raw\n  };\n}\n\nreturn [{\n  json: {\n    ...$('Filter Active Subscribers').first().json,\n    subject: emailData.subject,\n    body_html: emailData.body_html\n  }\n}];"
+      },
+      "id": "880b071d-a070-42cb-9815-a4b7e47e1a2e",
+      "name": "Parse Gemini Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1472,
+        -384
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.body_html }}",
+        "options": {}
+      },
+      "id": "3592252a-2a98-4630-9dbb-87c6b97abbf9",
+      "name": "Send Email via Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1664,
+        -384
+      ],
+      "webhookId": "4f3172b4-4926-4144-b445-c33c245454c9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "uo6HyMngsgR1CqqI",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/11q9CjJ3S08O6hsySQi0ne5NkLUyURAXSMtzVR1Cz9_E/edit?gid=1343461788#gid=1343461788",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "url",
+          "value": "=https://docs.google.com/spreadsheets/d/11q9CjJ3S08O6hsySQi0ne5NkLUyURAXSMtzVR1Cz9_E/edit?gid=1343461788#gid=1343461788",
+          "__regex": "https:\\/\\/docs\\.google\\.com\\/spreadsheets\\/d\\/[0-9a-zA-Z\\-_]+.*\\#gid=([0-9]+)"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "tracking_id",
+              "displayName": "tracking_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "campaign_name",
+              "displayName": "campaign_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sent_at",
+              "displayName": "sent_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "opened",
+              "displayName": "opened",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "clicked",
+              "displayName": "clicked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "open_time",
+              "displayName": "open_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "click_time",
+              "displayName": "click_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "labelIds",
+              "displayName": "labelIds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "09409ce3-5a54-4809-a041-aaf2c89fc875",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        1840,
+        -384
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aX9hDEGrpopc7jTL",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a professional Email Marketing Designer.\n\nCreate a beautiful, modern HTML email for marketing AI video advertising services.\n\nRequirements:\n- The email must be visually clean, minimal, and high-converting\n- Use a centered layout, max-width 600px\n- Background: light gray (#F4F4F4)\n- Card: white with rounded corners\n- Include a hero image at the top using this URL:\n  {{ $json.image_url }}\n\nContent:\n- Headline: \"Your Ads Are Being Ignored 😴\"\n- Subheadline: \"We Turn Them Into Viral AI Videos 🚀\"\n- CTA button:\n  Text: \"Get More Customers\"\n  Link: https://buildup.com/sale\n  Color: #0047AB\n\nRules:\n- Return ONLY clean HTML (no JSON, no explanation)\n- Use inline CSS\n- Use single quotes for HTML attributes\n- Make it look like a premium marketing email (Apple/Nike style)\n\nOutput:\nReturn ONLY HTML",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1136,
+        -384
+      ],
+      "id": "958b1f03-e570-410f-941e-2b30ca6429bd",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "11q9CjJ3S08O6hsySQi0ne5NkLUyURAXSMtzVR1Cz9_E",
+          "mode": "list",
+          "cachedResultName": "Email Marketing - n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11q9CjJ3S08O6hsySQi0ne5NkLUyURAXSMtzVR1Cz9_E/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": " Contacts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/11q9CjJ3S08O6hsySQi0ne5NkLUyURAXSMtzVR1Cz9_E/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "6952df69-ddd8-444f-9fef-cedff0b116da",
+      "name": "Get Contacts",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        -336
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aX9hDEGrpopc7jTL",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "campaign_brief",
+              "name": "campaign_brief",
+              "value": "Summer sale: 20% off all products this week. ",
+              "type": "string"
+            },
+            {
+              "id": "campaign_name",
+              "name": "campaign_name",
+              "value": "Summer Sale 2026",
+              "type": "string"
+            },
+            {
+              "id": "from_email",
+              "name": "from_email",
+              "value": "krisforwork2@gmail.com",
+              "type": "string"
+            },
+            {
+              "id": "brand_name",
+              "name": "brand_name",
+              "value": "BuildUp",
+              "type": "string"
+            },
+            {
+              "id": "db902145-8d39-4c74-a14e-3f2495ce200d",
+              "name": "image_url",
+              "value": "https://i.imgur.com/ao5RciC.jpeg",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "dfb2d1c9-6857-40fd-b5b2-ede15042ccfe",
+      "name": "Set Campaign Brief",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        784,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              },
+              "id": "657bef3b-1ff4-4c87-93a8-7286426c61e2"
+            },
+            {
+              "leftValue": "={{ $json.unsubscribed }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              },
+              "id": "224ea514-9765-45c8-ab3c-8760a5fdecb8"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "043016b9-e0e1-4150-a9ae-0cbbb929694e",
+      "name": "Filter Active Subscribers",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [
+        592,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        928,
+        -336
+      ],
+      "id": "ff9e24b9-e566-4b6f-b7f2-4600c96faa78",
+      "name": "Wait",
+      "webhookId": "24d14e03-774d-456a-abe9-4b01bc6cbbf5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -160
+      ],
+      "id": "5cbd0577-fced-4347-bf51-98b43e5d4c7b",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WVZ8tcwCRAnldT9Q",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "AI Agent": [
+      {
+        "json": {
+          "output": "{\n  \"subject\": \"🚀 Turn Your Ads Into Viral Videos\",\n  \"body_html\": \"<html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>BuildUp</title></head><body style='margin:0;padding:0;background:#F4F4F4;font-family:Helvetica, Arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;'><center><div style='max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);'><img src='https://i.imgur.com/ao5RciC.jpeg' alt='AI-powered video advertisement creation' style='width:100%;max-width:600px;height:auto;display:block;'/><div style='padding:25px 20px;text-align:center;'><h1 style='font-size:28px;color:#333;margin-top:0;margin-bottom:15px;line-height:1.2;font-weight:bold;'>Your Ads Are Being Ignored 😴</h1><p style='font-size:19px;color:#555;margin-top:0;margin-bottom:30px;line-height:1.4;'>We Turn Them Into Viral AI Videos 🚀</p><a href='https://buildup.com/sale' target='_blank' style='display:inline-block;background:#0047AB;color:white;padding:16px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:17px;letter-spacing:0.5px;box-shadow:0 4px 8px rgba(0,71,171,0.2);'>Get More Customers</a><p style='font-size:12px;color:#888;margin-top:35px;margin-bottom:10px;'>Used by modern businesses to grow faster.</p></div></div></center></body></html>\"\n}"
+        }
+      },
+      {
+        "json": {
+          "output": "{\n  \"subject\": \"🚀 Turn Your Ads Into Viral Videos\",\n  \"body_html\": \"<html><body style='margin:0;padding:0;background:#F4F4F4;font-family:sans-serif;'><center><div style='max-width:600px;margin:auto;background:white;border-radius:12px;overflow:hidden;'><img src='https://i.imgur.com/ao5RciC.jpeg' alt='AI-powered video advertising' style='width:100%;height:auto;display:block;'/><div style='padding:20px;text-align:center;'><h1 style='font-size:28px;color:#333;margin-bottom:10px;'>Your Ads Are Being Ignored 😴</h1><p style='font-size:18px;color:#555;margin-bottom:30px;'>We Turn Them Into Viral AI Videos 🚀</p><a href='https://buildup.com/sale' target='_blank' style='display:inline-block;background:#0047AB;color:white;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;'>Get More Customers</a><p style='font-size:12px;color:#888;margin-top:30px;'>Used by modern businesses to grow faster.</p></div></div></center></body></html>\"\n}"
+        }
+      },
+      {
+        "json": {
+          "output": "{\n  \"subject\": \"🚀 Turn Your Ads Into Viral Videos\",\n  \"body_html\": \"<html><body style='margin:0;padding:0;background:#F4F4F4;font-family:sans-serif;'><div style='max-width:600px;margin:auto;background:white;border-radius:12px;overflow:hidden;'><img src='https://i.imgur.com/ao5RciC.jpeg' alt='AI Video Advertising' style='width:100%;display:block;height:auto;'/><div style='padding:20px;text-align:center;'><h1 style='font-size:28px;color:#333;margin-top:20px;margin-bottom:10px;'>Your Ads Are Being Ignored 😴</h1><p style='font-size:18px;color:#555;margin-bottom:30px;'>We Turn Them Into Viral AI Videos 🚀</p><a href='https://buildup.com/sale' style='display:inline-block;background:#0047AB;color:white;padding:15px 30px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;'>Get More Customers</a><p style='font-size:12px;color:#888;margin-top:30px;margin-bottom:10px;'>Used by modern businesses to grow faster.</p></div></div></body></html>\"\n}"
+        }
+      }
+    ],
+    "Parse Gemini Response": [
+      {
+        "json": {
+          "row_number": 2,
+          "first_name": "Kris",
+          "last_name": "Huynh",
+          "email": "krishuynh306@gmail.com",
+          "segment": "VIP",
+          "last_purchase": "2025-12-25",
+          "total_orders": 5,
+          "unsubscribed": false,
+          "subject": "🚀 Turn Your Ads Into Viral Videos",
+          "body_html": "<html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>BuildUp</title></head><body style='margin:0;padding:0;background:#F4F4F4;font-family:Helvetica, Arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;'><center><div style='max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);'><img src='https://i.imgur.com/ao5RciC.jpeg' alt='AI-powered video advertisement creation' style='width:100%;max-width:600px;height:auto;display:block;'/><div style='padding:25px 20px;text-align:center;'><h1 style='font-size:28px;color:#333;margin-top:0;margin-bottom:15px;line-height:1.2;font-weight:bold;'>Your Ads Are Being Ignored 😴</h1><p style='font-size:19px;color:#555;margin-top:0;margin-bottom:30px;line-height:1.4;'>We Turn Them Into Viral AI Videos 🚀</p><a href='https://buildup.com/sale' target='_blank' style='display:inline-block;background:#0047AB;color:white;padding:16px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:17px;letter-spacing:0.5px;box-shadow:0 4px 8px rgba(0,71,171,0.2);'>Get More Customers</a><p style='font-size:12px;color:#888;margin-top:35px;margin-bottom:10px;'>Used by modern businesses to grow faster.</p></div></div></center></body></html>"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Gemini Response": {
+      "main": [
+        [
+          {
+            "node": "Send Email via Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email via Gmail": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Contacts": {
+      "main": [
+        [
+          {
+            "node": "Filter Active Subscribers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Active Subscribers": {
+      "main": [
+        [
+          {
+            "node": "Set Campaign Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Campaign Brief": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parse Gemini Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8dba4ea0-5367-4f6b-9171-71a80c493995",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d375533fd71590f5813db2a9f81e61fc6726e15e6b0b886cf54e860e4ca6e369"
+  },
+  "id": "8JajBptH0r9FID5x",
+  "tags": []
+}
