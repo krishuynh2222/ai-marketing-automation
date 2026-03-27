@@ -6,46 +6,42 @@ This project is an end-to-end AI-driven marketing automation system that generat
 It integrates workflow orchestration, large language models (LLMs), and API-based services to automate marketing operations at scale.
 
 ## 🎯 Problem
-Many businesses struggle with:
-- Manual and time-consuming campaign creation
-- Inconsistent marketing content
-- Inefficient customer outreach workflows
+Creating email campaigns manually is slow, repetitive, and requires both marketing and technical effort.
+Businesses struggle to:
+- Write high-converting emails
+- Personalize content at scale
+- Manage campaign workflows
+- Track performance in real-time
+
 
 ## 💡 Solution
 I designed and built an automated pipeline that:
-- Generates marketing content using AI (Google Gemini)
+- Generates marketing content using AI
+- Users approve campaigns via UI
 - Sends personalized email campaigns automatically
 - Logs campaign activity for tracking and analysis
 
-## ⚙️ Architecture
-
+## ⚙️ System Architecture
 ![Workflow](./screenshots/workflow.png)
 
-### Pipeline Flow:
-1. Schedule Trigger → Initiates campaign workflow  
-2. Get Contacts → Retrieves customer data from Google Sheets  
-3. Filter Active Subscribers → Filters valid users  
-4. Campaign Brief → Defines campaign content input  
-5. AI Agent (Gemini) → Generates marketing copy  
-6. Parse Response → Formats AI output  
-7. Send Email → Sends emails via Gmail API  
-8. Log Results → Stores campaign logs in Google Sheets  
+
 
 ## 🧱 Tech Stack
 
 - **Workflow Automation:** n8n  
 - **Programming:** JavaScript  
-- **AI / LLM:** Google Gemini API  
+- **AI / LLM:** Google Gemini, ChatGPT, Groq, Claude
 - **APIs:** Gmail API, Google Sheets API  
 - **Data Layer:** Google Sheets  
 
 ## ✨ Key Features
-
-- 🤖 AI-generated marketing content  
-- 📧 Automated email campaign delivery  
-- 🔄 End-to-end workflow orchestration  
-- 📊 Campaign logging and tracking  
-- ⚡ Scalable marketing automation pipeline  
+- ✨ AI-generated email campaigns (subject + HTML content)
+- 👀 Campaign preview before sending
+- 📤 Automated email delivery via Resend API
+- 🖼 Image support (user-uploaded or dynamic)
+- 📊 Real-time analytics dashboard
+- 📜 Campaign activity logs
+- ⚡ Fully automated workflow using n8n
 
 ## 🧪 Demo
 
@@ -57,13 +53,11 @@ I designed and built an automated pipeline that:
 
 
 ## 📈 Impact
-
 - Reduced manual marketing effort  
 - Improved campaign efficiency and consistency  
 - Enabled scalable, automated customer engagement  
 
 ## 🧠 Key Takeaways
-
 - Built a real-world automation system integrating multiple APIs  
 - Designed an end-to-end pipeline from data → AI → delivery  
 - Applied LLMs to solve business problems (not just experiments)  
