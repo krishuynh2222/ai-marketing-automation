@@ -1,9 +1,8 @@
 # 🚀 AI-Powered Marketing Automation System
 
-## 📌 Overview
-This project is an end-to-end AI-driven marketing automation system that generates campaign content and automatically sends emails to customers.
-
-It integrates workflow orchestration, large language models (LLMs), and API-based services to automate marketing operations at scale.
+## 🚀 Overview
+MailFlow AI is an end-to-end email marketing automation system that leverages AI agents to generate, personalize, and send campaigns automatically.
+Users simply input a campaign brief, and the system handles the entire workflow — from content generation to delivery and analytics tracking.
 
 ## 🎯 Problem
 Creating email campaigns manually is slow, repetitive, and requires both marketing and technical effort.
@@ -20,11 +19,6 @@ I designed and built an automated pipeline that:
 - Users approve campaigns via UI
 - Sends personalized email campaigns automatically
 - Logs campaign activity for tracking and analysis
-
-## ⚙️ System Architecture
-![Workflow](./screenshots/workflow.png)
-
-
 
 ## 🧱 Tech Stack
 
@@ -46,7 +40,7 @@ I designed and built an automated pipeline that:
 ## 🧪 Demo
 
 ### 🔹 Workflow Automation
-![Workflow](./screenshots/workflow.png)
+![Workflow](./screenshots/n8n_workflow.png)
 
 ### 🔹 Email Output
 ![Email](./screenshots/result.png)
