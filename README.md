@@ -29,14 +29,7 @@ I designed and built an automated pipeline that:
 
 ## 🧪 Demo
 ### 🔹 Workflow Automation
-![Workflow](./screenshots/n8n_workflow.png)
-
-### 🔹 Email Output
-![Email](./screenshots/01-brief.png)
-![Email](./screenshots/02-audience.png)
-![Email](./screenshots/03-preview.png)
-![Email](./screenshots/04-schedule.png)
-![Email](./screenshots/05-success.png)
+![Workflow](./screenshots/ai_marketing_automation.mp4)
 
 ## 📈 Impact
 - Reduced manual marketing effort  
