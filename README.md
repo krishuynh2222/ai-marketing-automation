@@ -29,7 +29,7 @@ I designed and built an automated pipeline that:
 
 ## 🧪 Demo
 ### 🔹 Workflow Automation
-[![Workflow](./screenshots/ai_marketing_automation.mp4)](https://drive.google.com/drive/folders/1o7HVRwDvhUbDQekconTbY-1wqw1jz4XP?usp=sharing)
+[![Video Demo](./screenshots/ai_marketing_automation.mp4)](https://drive.google.com/drive/folders/1o7HVRwDvhUbDQekconTbY-1wqw1jz4XP?usp=sharing)
 
 ## 📈 Impact
 - Reduced manual marketing effort  
