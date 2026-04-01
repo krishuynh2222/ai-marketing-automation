@@ -1,8 +1,8 @@
 # 🚀 AI-Powered Marketing Automation System
 
 ## 🚀 Overview
-MailFlow AI is an end-to-end email marketing automation system that leverages AI agents to generate, personalize, and deliver campaigns automatically.
-Users simply input a campaign brief, and the system handles the entire workflow — from content generation to email delivery and analytics tracking.
+This project is an end-to-end AI-powered marketing automation system that generates, personalizes, and delivers email campaigns at scale.
+Users provide a simple campaign brief, and the system automatically handles content generation, approval, delivery, and tracking - reducing manual effort and enabling scalable customer engagement.
 
 ## 🎯 Problem
 Creating email campaigns manually is slow, repetitive, and requires both marketing and technical effort.
@@ -25,11 +25,11 @@ I designed and built an automated pipeline that:
 - **Programming:** JavaScript  
 - **AI / LLM:** Google Gemini, ChatGPT, Groq, Claude
 - **APIs:** Gmail API, Google Sheets API, Resend API  
-- **Database / Storage:** Google Sheets*Data Layer:** Google Sheets  
+- **Data Layer:** Google Sheets*Data Layer:** Google Sheets  
 
 ## 🧪 Demo
 ### 🔹 Workflow Automation
-[![Video Demo](./screenshots/ai_marketing_automation.mp4)](https://drive.google.com/drive/folders/1o7HVRwDvhUbDQekconTbY-1wqw1jz4XP?usp=sharing)
+👉 https://drive.google.com/drive/folders/1o7HVRwDvhUbDQekconTbY-1wqw1jz4XP?usp=sharing
 
 ## 📈 Impact
 - Reduced manual marketing effort  
